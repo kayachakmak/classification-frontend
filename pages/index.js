@@ -1,115 +1,124 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+// pages/index.js
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const HomePage = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    ip_adress: "",
+    classifier_name: "",
+    class_name1: "",
+    class_name2: "",
+  });
 
-export default function Home() {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { ip_adress, classifier_name, class_name1, class_name2 } = formData;
+
+    // Assuming input validation is handled elsewhere
+    router.push({
+      pathname: "/create_classifier",
+      query: { ip_adress, classifier_name, class_name1, class_name2 },
+    });
+  };
+
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 px-4">
+      <div className="bg-white shadow-2xl rounded-xl p-8 max-w-md w-full">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+          Parameters:
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+            <label
+              htmlFor="ip_adress"
+              className="block text-sm font-medium text-gray-700"
+            >
+              The IP adress of your computer :
+            </label>
+            <input
+              type="text"
+              id="ip_adress"
+              name="ip_adress"
+              value={formData.ip_adress}
+              onChange={handleChange}
+              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
+              required
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <div>
+            <label
+              htmlFor="classifier_name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Classifier Name:
+            </label>
+            <input
+              type="text"
+              id="classifier_name"
+              name="classifier_name"
+              value={formData.input1}
+              onChange={handleChange}
+              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="class_name1"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Class Name 1:
+            </label>
+            <input
+              type="text"
+              id="class_name1"
+              name="class_name1"
+              value={formData.class_name1}
+              onChange={handleChange}
+              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="class_name2"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Class Name 2:
+            </label>
+            <input
+              type="text"
+              id="class_name2"
+              name="class_name2"
+              value={formData.class_name2}
+              onChange={handleChange}
+              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="flex items-center justify-center w-12 h-12 bg-purple-600 rounded-full hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-300 mx-auto"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <img
+              src="/arrow-right.svg"
+              alt="Submit"
+              className="w-6 h-6 text-white"
+            />
+          </button>
+        </form>
+      </div>
     </div>
   );
-}
+ }
+
+export default HomePage;
