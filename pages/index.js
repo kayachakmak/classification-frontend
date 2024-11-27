@@ -67,7 +67,6 @@ const HomePage = () => {
           name="classifier_name"
           value={formData.input1}
           onChange={handleChange}
-          placeholder="Classifier Name"
           className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
           required
         />
@@ -85,7 +84,6 @@ const HomePage = () => {
           name="class_name1"
           value={formData.class_name1}
           onChange={handleChange}
-          placeholder="Class Name 1"
           className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
           required
         />
@@ -103,7 +101,6 @@ const HomePage = () => {
           name="class_name2"
           value={formData.class_name2}
           onChange={handleChange}
-          placeholder="Class Name 2"
           className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
           required
         />
