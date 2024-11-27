@@ -30,95 +30,97 @@ const HomePage = () => {
     });
   };
 
-  return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 px-4">
-      <div className="bg-white shadow-2xl rounded-xl p-8 max-w-md w-full">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-          Parameters:
-        </h1>
-        <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
-            <label
-              htmlFor="ip_adress"
-              className="block text-sm font-medium text-gray-700"
-            >
-              The IP adress of your computer :
-            </label>
-            <input
-              type="text"
-              id="ip_adress"
-              name="ip_adress"
-              value={formData.ip_adress}
-              onChange={handleChange}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="classifier_name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Classifier Name:
-            </label>
-            <input
-              type="text"
-              id="classifier_name"
-              name="classifier_name"
-              value={formData.input1}
-              onChange={handleChange}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="class_name1"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Class Name 1:
-            </label>
-            <input
-              type="text"
-              id="class_name1"
-              name="class_name1"
-              value={formData.class_name1}
-              onChange={handleChange}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
-              required
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="class_name2"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Class Name 2:
-            </label>
-            <input
-              type="text"
-              id="class_name2"
-              name="class_name2"
-              value={formData.class_name2}
-              onChange={handleChange}
-              className="mt-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-300"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="flex items-center justify-center w-12 h-12 bg-purple-600 rounded-full hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-300 mx-auto"
-          >
-            <img
-              src="/arrow-right.svg"
-              alt="Submit"
-              className="w-6 h-6 text-white"
-            />
-          </button>
-        </form>
+  return (<div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-700 via-purple-600 to-blue-500 px-4">
+  <div className="bg-white shadow-2xl rounded-xl p-8 max-w-md w-full border border-gray-200">
+    <h1 className="text-4xl font-bold text-center text-indigo-900 mb-6">
+      Parameters
+    </h1>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label
+          htmlFor="ip_adress"
+          className="block text-sm font-semibold text-purple-800"
+        >
+          The IP address of your computer:
+        </label>
+        <input
+          type="text"
+          id="ip_adress"
+          name="ip_adress"
+          value={formData.ip_adress}
+          onChange={handleChange}
+          placeholder="e.g., http://192.168.1.1"
+          className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
+          required
+        />
       </div>
-    </div>
-  );
+      <div>
+        <label
+          htmlFor="classifier_name"
+          className="block text-sm font-semibold text-purple-800"
+        >
+          Classifier Name:
+        </label>
+        <input
+          type="text"
+          id="classifier_name"
+          name="classifier_name"
+          value={formData.input1}
+          onChange={handleChange}
+          placeholder="Classifier Name"
+          className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
+          required
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="class_name1"
+          className="block text-sm font-semibold text-purple-800"
+        >
+          Class Name 1:
+        </label>
+        <input
+          type="text"
+          id="class_name1"
+          name="class_name1"
+          value={formData.class_name1}
+          onChange={handleChange}
+          placeholder="Class Name 1"
+          className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
+          required
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="class_name2"
+          className="block text-sm font-semibold text-purple-800"
+        >
+          Class Name 2:
+        </label>
+        <input
+          type="text"
+          id="class_name2"
+          name="class_name2"
+          value={formData.class_name2}
+          onChange={handleChange}
+          placeholder="Class Name 2"
+          className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-full hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-300 mx-auto shadow-lg"
+      >
+        <img
+          src="/arrow-right.svg"
+          alt="Submit"
+          className="w-6 h-6 text-white"
+        />
+      </button>
+    </form>
+  </div>
+</div>)
  }
 
 export default HomePage;

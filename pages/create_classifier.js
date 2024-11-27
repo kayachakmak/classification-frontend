@@ -17,7 +17,7 @@ const ButtonsPage = () => {
       alert("Please select a class first.");
       return;
     }
-
+    
     setIsRecording(true);
 
     try {
@@ -66,74 +66,73 @@ const ButtonsPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
-      {/* Header */}
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">
-        {classifier_name || "Classifier Name"}
-      </h1>
+<div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-gray-700 via-gray-900 to-black px-4">
+  {/* Header */}
+  <h1 className="text-4xl font-bold text-white mb-8">
+    {classifier_name || "Classifier Name"}
+  </h1>
 
-      {/* Buttons */}
-      <div className="flex gap-4 mb-8">
-        <button
-          onClick={() => setClassId(0)}
-          className={`px-6 py-2 rounded-lg shadow-md text-white ${
-            classId === 0 ? "bg-blue-700" : "bg-blue-600"
-          } hover:bg-blue-700`}
-        >
-          {class_name1 || "Class Name 1"}
-        </button>
-        <button
-          onClick={() => setClassId(1)}
-          className={`px-6 py-2 rounded-lg shadow-md text-white ${
-            classId === 1 ? "bg-blue-700" : "bg-blue-600"
-          } hover:bg-blue-700`}
-        >
-          {class_name2 || "Class Name 2"}
-        </button>
+  {/* Buttons */}
+  <div className="flex gap-6 mb-8">
+    <button
+      onClick={() => setClassId(0)}
+      className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
+        classId === 0 ? "bg-blue-700" : "bg-blue-500"
+      } hover:bg-blue-600`}
+    >
+      {class_name1 || "Class Name 1"}
+    </button>
+    <button
+      onClick={() => setClassId(1)}
+      className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
+        classId === 1 ? "bg-blue-700" : "bg-blue-500"
+      } hover:bg-blue-600`}
+    >
+      {class_name2 || "Class Name 2"}
+    </button>
+  </div>
+
+  {/* MJPEG Video Streaming Box */}
+  <div
+    className="bg-black rounded-lg overflow-hidden mb-8 border border-gray-600 shadow-lg"
+    style={{ width: "316px", height: "512px" }}
+  >
+    {videoStreamUrl ? (
+      <img
+        src={videoStreamUrl}
+        alt="Video Stream"
+        className="w-full h-full object-cover"
+      />
+    ) : (
+      <div className="flex items-center justify-center h-full text-white text-lg font-semibold">
+        Loading video stream...
       </div>
+    )}
+  </div>
 
-      {/* MJPEG Video Streaming Box */}
-      <div
-        className="bg-black rounded-lg overflow-hidden mb-8"
-        style={{ width: "316px", height: "512px" }}
-      >
-        {videoStreamUrl ? (
-          <img
-            src={videoStreamUrl}
-            alt="Video Stream"
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="flex items-center justify-center h-full text-white">
-            Loading video stream...
-          </div>
-        )}
-      </div>
+  {/* Recording Buttons */}
+  <div className="flex gap-6">
+    <button
+      onClick={handleStartRecording}
+      disabled={isRecording}
+      className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
+        isRecording ? "bg-gray-500" : "bg-green-600"
+      } hover:bg-green-700`}
+    >
+      {isRecording ? "Recording..." : "Start Recording"}
+    </button>
 
-      {/* Recording Buttons */}
-      <div className="flex gap-4">
-        <button
-          onClick={handleStartRecording}
-          disabled={isRecording}
-          className={`px-6 py-2 rounded-lg shadow-md text-white ${
-            isRecording ? "bg-gray-400" : "bg-green-600"
-          } hover:bg-green-700`}
-        >
-          {isRecording ? "Recording..." : "Start Recording"}
-        </button>
-
-        <button
-          onClick={handleStopRecording}
-          disabled={!isRecording}
-          className={`px-6 py-2 rounded-lg shadow-md text-white ${
-            !isRecording ? "bg-gray-400" : "bg-red-600"
-          } hover:bg-red-700`}
-        >
-          Stop Recording
-        </button>
-      </div>
-    </div>
-  );
+    <button
+      onClick={handleStopRecording}
+      disabled={!isRecording}
+      className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
+        !isRecording ? "bg-gray-500" : "bg-red-600"
+      } hover:bg-red-700`}
+    >
+      Stop Recording
+    </button>
+  </div>
+</div>  );
 };
 
 export default ButtonsPage;
