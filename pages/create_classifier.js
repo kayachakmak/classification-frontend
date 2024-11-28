@@ -9,7 +9,7 @@ const ButtonsPage = () => {
   const [isRecording, setIsRecording] = useState(false);
 
   // Generate the MJPEG stream URL
-  const videoStreamUrl = ip_address ? `${ip_address}/mint/video_feed` : null;
+  const videoStreamUrl = ip_address ? `http://${ip_address}:6543/mint/video_feed` : null;
 
   // Handle start recording
   const handleStartRecording = async () => {
@@ -22,7 +22,7 @@ const ButtonsPage = () => {
 
     try {
       const response = await fetch(
-        `${ip_address}/mint/start_recording?class_id=${classId}`
+        `http://${ip_address}/mint/start_recording?class_id=${classId}`
       );
 
       if (!response.ok) {
@@ -44,13 +44,7 @@ const ButtonsPage = () => {
     }
 
     try {
-      const response = await fetch(`${ip_address}/mint/stop_recording`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ classId }),
-      });
+      const response = await fetch(`http://${ip_address}/mint/stop_recording`);
 
       if (!response.ok) {
         throw new Error("Failed to stop recording");
@@ -77,7 +71,7 @@ const ButtonsPage = () => {
     <button
       onClick={() => setClassId(0)}
       className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
-        classId === 0 ? "bg-blue-700" : "bg-blue-500"
+        classId === 0 ? "bg-blue-800" : "bg-blue-200"
       } hover:bg-blue-600`}
     >
       {class_name1 || "Class Name 1"}
@@ -85,7 +79,7 @@ const ButtonsPage = () => {
     <button
       onClick={() => setClassId(1)}
       className={`px-6 py-3 rounded-lg shadow-md text-white text-lg font-semibold ${
-        classId === 1 ? "bg-blue-700" : "bg-blue-500"
+        classId === 1 ? "bg-red-800" : "bg-red-200"
       } hover:bg-blue-600`}
     >
       {class_name2 || "Class Name 2"}
