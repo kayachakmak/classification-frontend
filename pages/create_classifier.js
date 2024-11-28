@@ -22,7 +22,7 @@ const ButtonsPage = () => {
 
     try {
       const response = await fetch(
-        `http://${ip_address}/mint/start_recording?class_id=${classId}`
+        `http://${ip_address}:6543/mint/start_recording?class_id=${classId}`
       );
 
       if (!response.ok) {
@@ -44,7 +44,7 @@ const ButtonsPage = () => {
     }
 
     try {
-      const response = await fetch(`http://${ip_address}/mint/stop_recording`);
+      const response = await fetch(`http://${ip_address}:6543/mint/stop_recording`);
 
       if (!response.ok) {
         throw new Error("Failed to stop recording");
