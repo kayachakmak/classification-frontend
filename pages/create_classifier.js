@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 
 const ButtonsPage = () => {
   const router = useRouter();
-  const { ip_address, classifier_name, class_name1, class_name2 } = router.query;
+  const {classifier_name, class_name1, class_name2 } = router.query;
 
   const [classId, setClassId] = useState(null); // Stores 0 or 1 based on selected button
   const [isRecording, setIsRecording] = useState(false);
 
   // Generate the MJPEG stream URL
-  const videoStreamUrl = ip_address ? `http://${ip_address}:6543/mint/video_feed` : null;
+  const url = `http://localhost:6543/mint/video_feed`
+
 
   // Handle start recording
   const handleStartRecording = async () => {
@@ -22,7 +23,7 @@ const ButtonsPage = () => {
 
     try {
       const response = await fetch(
-        `http://${ip_address}:6543/mint/start_recording?class_id=${classId}`
+        `http://localhost:6543/mint/start_recording?class_id=${classId}`
       );
 
       if (!response.ok) {
@@ -44,7 +45,7 @@ const ButtonsPage = () => {
     }
 
     try {
-      const response = await fetch(`http://${ip_address}:6543/mint/stop_recording`);
+      const response = await fetch(`http://localhost:6543/mint/stop_recording`);
 
       if (!response.ok) {
         throw new Error("Failed to stop recording");
@@ -89,19 +90,15 @@ const ButtonsPage = () => {
   {/* MJPEG Video Streaming Box */}
   <div
     className="bg-black rounded-lg overflow-hidden mb-8 border border-gray-600 shadow-lg"
-    style={{ width: "316px", height: "512px" }}
+    style={{ width: "640px", height: "512px" }}
   >
-    {videoStreamUrl ? (
+    
       <img
-        src={videoStreamUrl}
+        src={url}
         alt="Video Stream"
         className="w-full h-full object-cover"
       />
-    ) : (
-      <div className="flex items-center justify-center h-full text-white text-lg font-semibold">
-        Loading video stream...
-      </div>
-    )}
+    
   </div>
 
   {/* Recording Buttons */}

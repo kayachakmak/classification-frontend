@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 const HomePage = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    ip_adress: "",
     classifier_name: "",
     class_name1: "",
     class_name2: "",
@@ -21,12 +20,12 @@ const HomePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { ip_adress, classifier_name, class_name1, class_name2 } = formData;
+    const { classifier_name, class_name1, class_name2 } = formData;
 
     // Assuming input validation is handled elsewhere
     router.push({
       pathname: "/create_classifier",
-      query: { ip_adress, classifier_name, class_name1, class_name2 },
+      query: { classifier_name, class_name1, class_name2 },
     });
   };
 
@@ -36,24 +35,6 @@ const HomePage = () => {
       Parameters
     </h1>
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label
-          htmlFor="ip_adress"
-          className="block text-sm font-semibold text-purple-800"
-        >
-          The IP address of your computer:
-        </label>
-        <input
-          type="text"
-          id="ip_adress"
-          name="ip_adress"
-          value={formData.ip_adress}
-          onChange={handleChange}
-          placeholder="e.g., http://192.168.1.1"
-          className="mt-2 block w-full rounded-md border-gray-600 text-gray-600 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-300"
-          required
-        />
-      </div>
       <div>
         <label
           htmlFor="classifier_name"
