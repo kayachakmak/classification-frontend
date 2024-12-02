@@ -89,10 +89,15 @@ const ButtonsPage = () => {
 
   {/* MJPEG Video Streaming Box */}
   <div
-    className="bg-black rounded-lg overflow-hidden mb-8 border border-gray-600 shadow-lg"
+    className="relative bg-black rounded-lg overflow-hidden mb-8 border border-gray-600 shadow-lg"
     style={{ width: "640px", height: "512px" }}
   >
-    
+    {isRecording && (
+    <div className="absolute bottom-2 right-2 flex items-center gap-2">
+      <div className="w-3 h-3 bg-red-600 rounded-full animate-blink"></div>
+      <span className="text-white text-sm">Recording</span>
+    </div>
+  )}
       <img
         src={url}
         alt="Video Stream"
